@@ -1,0 +1,16 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy_preview:
+    uses: ./.github/workflows/deploy.yml
+    permissions:
+      contents: "read"
+      id-token: "write"
+    with:
+      environment: preview
+      gcp_service_account_email: bng--github-actions--preview@bng-preview.iam.gserviceaccount.com
+      gcp_workload_identity_provider_id: projects/681705307957/locations/global/workloadIdentityPools/bng--github-actions--preview/providers/bng-github-actions-preview2
+
